@@ -2,7 +2,7 @@
 ##############################################################################################################################
 ##R CODE FOR AN EXPERT-BASED STOCHASTIC POPULATION FORECAST, USING AUTOREGRESSIVE MODELS WITH RANDOM COEFFICIENTS, APPLIED TO ALASKA
 ##
-##EDDIE HUNSINGER, SEPTEMBER 2010 (LAST UPDATED NOVEMBER 2014)
+##EDDIE HUNSINGER, SEPTEMBER 2010 (LAST UPDATED DECEMBER 2018)
 ##http://www.demog.berkeley.edu/~eddieh/
 ##edyhsgr@gmail.com
 ##
@@ -36,7 +36,7 @@ BASEANDSTEPS<-STEPS+1
 ##SURVIVAL PARAMETERS
 ##
 ##YEAR 2000 US LIFE TABLE lx CURVES FROM THE NATIONAL CENTER FOR HEALTH STATISTICS
-Survival<-read.table(file="http://www.demog.berkeley.edu/~eddieh/StochasticForecast/lx2000_US_NCHS.csv",header=TRUE,sep=",")
+Survival<-read.table(file="https://github.com/AppliedDemogToolbox/Hunsinger_StochasticForecast/raw/master/lx2000_US_NCHS.csv",header=TRUE,sep=",")
 lxF<-Survival$F_2000
 lxM<-Survival$M_2000
 ##"BA" IS THE BRASS RELATIONAL LOGIT MODEL ALPHA. IT IS CALIBRATED FOR THE JUMP-OFF PERIOD AND TO FOLLOW A FIXED RANDOM WALK WITH DRIFT MODEL,
@@ -50,7 +50,7 @@ BA_e<-.0182
 ##FERTILITY PARAMETERS
 ##
 ##YEAR 2005 US FERTILITY RATES FROM THE NATIONAL CENTER FOR HEALTH STATISTICS, SUMMED TO 1
-Fertility<-read.table(file="http://www.demog.berkeley.edu/~eddieh/StochasticForecast/Fx2005_US_NCHS.csv",header=TRUE,sep=",")
+Fertility<-read.table(file="https://github.com/AppliedDemogToolbox/Hunsinger_StochasticForecast/raw/master/Fx2005_US_NCHS.csv",header=TRUE,sep=",")
 PropFx<-c(Fertility$PropFx)
 ##FRACTION FEMALE AT BIRTH
 ffab<-.4886
@@ -65,7 +65,7 @@ TFR_e<-.243
 ##NETMIGRATION PARAMETERS
 ##
 ##1995-2000 MIGRATION PROFILES FROM THE 2000 CENSUS, SUMMED TO 1
-Migration<-read.table(file="http://www.demog.berkeley.edu/~eddieh/StochasticForecast/MigProf2000_AKCACO_Census2000.csv",header=TRUE,sep=",")
+Migration<-read.table(file="https://github.com/AppliedDemogToolbox/Hunsinger_StochasticForecast/raw/master/MigProf2000_AKCACO_Census2000.csv",header=TRUE,sep=",")
 PropInM<-c(Migration$AKIn)
 PropInF<-c(Migration$AKIn)
 PropOutM<-c(Migration$AKOut)
@@ -85,7 +85,7 @@ PipeLev<-c(-.1,.1,0)
 ##BASE POPULATION
 ##
 ##VINTAGE 2009 POPULATION ESTIMATES FOR 2005, FROM THE ALASKA DEPARTMENT OF LABOR AND WORKFORCE DEVELOPMENT (http://almis.labor.state.ak.us/?PAGEID=67&SUBID=115)
-K05<-read.table(file="http://www.demog.berkeley.edu/~eddieh/StochasticForecast/AgeSex2005_AK_AKDOLv2009.csv",header=TRUE,sep=",")
+K05<-read.table(file="https://github.com/AppliedDemogToolbox/Hunsinger_StochasticForecast/raw/master/AgeSex2005_AK_AKDOLv2009.csv",header=TRUE,sep=",")
 KF05<-K05$AK_F_2005
 KM05<-K05$AK_M_2005
 
