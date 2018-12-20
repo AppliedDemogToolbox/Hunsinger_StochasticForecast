@@ -2,7 +2,7 @@
 ##############################################################################################################################
 ##R CODE FOR AN EXPERT-BASED STOCHASTIC POPULATION FORECAST, USING AUTOREGRESSIVE MODELS WITH RANDOM COEFFICIENTS, APPLIED TO ALASKA
 ##
-##EDDIE HUNSINGER, SEPTEMBER 2010 (LAST UPDATED DECEMBER 2018)
+##EDDIE HUNSINGER, SEPTEMBER 2010 (UPDATED DECEMBER 2018)
 ##http://www.demog.berkeley.edu/~eddieh/
 ##edyhsgr@gmail.com
 ##
