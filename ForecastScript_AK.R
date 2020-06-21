@@ -2,7 +2,7 @@
 ##############################################################################################################################
 ##R CODE FOR AN EXPERT-BASED STOCHASTIC POPULATION FORECAST, USING AUTOREGRESSIVE MODELS WITH RANDOM COEFFICIENTS, APPLIED TO ALASKA
 ##
-##EDDIE HUNSINGER, SEPTEMBER 2010 (UPDATED DECEMBER 2018)
+##EDDIE HUNSINGER, SEPTEMBER 2010 (UPDATED JUNE 2020)
 ##http://www.demog.berkeley.edu/~eddieh/
 ##edyhsgr@gmail.com
 ##
@@ -26,7 +26,7 @@
 ##
 ##NUMBER OF ITERATIONS
 ##SET TO 2,000 HERE (INSTEAD OF 10,000) TO SPEED UP COMPUTATION FOR REVIEW
-ITER<-2000
+ITER<-10000
 ##SIZE OF PROJECTION MATRIX
 SIZE<-21
 ##NUMBER OF PROJECTION STEPS
@@ -169,34 +169,34 @@ for (i in 1:length(lxM)){lxM30[i,]<-1/(1+exp(-2*BrassM30$Alpha-2*BrassM30$Beta*Y
 LxF30<-LxF25<-LxF20<-LxF25<-LxF15<-LxF10<-LxF05<-array(0,c(SIZE,ITER))
 LxM30<-LxM25<-LxM20<-LxM15<-LxM15<-LxM10<-LxM05<-array(0,c(SIZE,ITER))
 ##**THIS IS A LITTLE OFF FOR THE FIRST AGE GROUP**
-for (i in 1:SIZE){LxF05[i,]<-.5*(lxF05[i,]+lxF05[i+1,])}
-for (i in 1:SIZE){LxM05[i,]<-.5*(lxM05[i,]+lxM05[i+1,])}
-for (i in 1:SIZE){LxF10[i,]<-.5*(lxF10[i,]+lxF10[i+1,])}
-for (i in 1:SIZE){LxM10[i,]<-.5*(lxM10[i,]+lxM10[i+1,])}
-for (i in 1:SIZE){LxF15[i,]<-.5*(lxF15[i,]+lxF15[i+1,])}
-for (i in 1:SIZE){LxM15[i,]<-.5*(lxM15[i,]+lxM15[i+1,])}
-for (i in 1:SIZE){LxF20[i,]<-.5*(lxF20[i,]+lxF20[i+1,])}
-for (i in 1:SIZE){LxM20[i,]<-.5*(lxM20[i,]+lxM20[i+1,])}
-for (i in 1:SIZE){LxF25[i,]<-.5*(lxF25[i,]+lxF25[i+1,])}
-for (i in 1:SIZE){LxM25[i,]<-.5*(lxM25[i,]+lxM25[i+1,])}
-for (i in 1:SIZE){LxF30[i,]<-.5*(lxF30[i,]+lxF30[i+1,])}
-for (i in 1:SIZE){LxM30[i,]<-.5*(lxM30[i,]+lxM30[i+1,])}
+for (i in 1:SIZE){LxF05[i,]<-2.5*(lxF05[i,]+lxF05[i+1,])}
+for (i in 1:SIZE){LxM05[i,]<-2.5*(lxM05[i,]+lxM05[i+1,])}
+for (i in 1:SIZE){LxF10[i,]<-2.5*(lxF10[i,]+lxF10[i+1,])}
+for (i in 1:SIZE){LxM10[i,]<-2.5*(lxM10[i,]+lxM10[i+1,])}
+for (i in 1:SIZE){LxF15[i,]<-2.5*(lxF15[i,]+lxF15[i+1,])}
+for (i in 1:SIZE){LxM15[i,]<-2.5*(lxM15[i,]+lxM15[i+1,])}
+for (i in 1:SIZE){LxF20[i,]<-2.5*(lxF20[i,]+lxF20[i+1,])}
+for (i in 1:SIZE){LxM20[i,]<-2.5*(lxM20[i,]+lxM20[i+1,])}
+for (i in 1:SIZE){LxF25[i,]<-2.5*(lxF25[i,]+lxF25[i+1,])}
+for (i in 1:SIZE){LxM25[i,]<-2.5*(lxM25[i,]+lxM25[i+1,])}
+for (i in 1:SIZE){LxF30[i,]<-2.5*(lxF30[i,]+lxF30[i+1,])}
+for (i in 1:SIZE){LxM30[i,]<-2.5*(lxM30[i,]+lxM30[i+1,])}
 
 ##TABLE e0
 e0MFORE<-array(0,c(BASEANDSTEPS,ITER))
-for (i in 1:ITER){e0MFORE[2,i]<-sum(LxM05[,i]*5)}
-for (i in 1:ITER){e0MFORE[3,i]<-sum(LxM10[,i]*5)}
-for (i in 1:ITER){e0MFORE[4,i]<-sum(LxM15[,i]*5)}
-for (i in 1:ITER){e0MFORE[5,i]<-sum(LxM20[,i]*5)}
-for (i in 1:ITER){e0MFORE[6,i]<-sum(LxM25[,i]*5)}
-for (i in 1:ITER){e0MFORE[7,i]<-sum(LxM30[,i]*5)}
+for (i in 1:ITER){e0MFORE[2,i]<-sum(LxM05[,i])}
+for (i in 1:ITER){e0MFORE[3,i]<-sum(LxM10[,i])}
+for (i in 1:ITER){e0MFORE[4,i]<-sum(LxM15[,i])}
+for (i in 1:ITER){e0MFORE[5,i]<-sum(LxM20[,i])}
+for (i in 1:ITER){e0MFORE[6,i]<-sum(LxM25[,i])}
+for (i in 1:ITER){e0MFORE[7,i]<-sum(LxM30[,i])}
 e0FFORE<-array(0,c(BASEANDSTEPS,ITER))
-for (i in 1:ITER){e0FFORE[2,i]<-sum(LxF05[,i]*5)}
-for (i in 1:ITER){e0FFORE[3,i]<-sum(LxF10[,i]*5)}
-for (i in 1:ITER){e0FFORE[4,i]<-sum(LxF15[,i]*5)}
-for (i in 1:ITER){e0FFORE[5,i]<-sum(LxF20[,i]*5)}
-for (i in 1:ITER){e0FFORE[6,i]<-sum(LxF25[,i]*5)}
-for (i in 1:ITER){e0FFORE[7,i]<-sum(LxF30[,i]*5)}
+for (i in 1:ITER){e0FFORE[2,i]<-sum(LxF05[,i])}
+for (i in 1:ITER){e0FFORE[3,i]<-sum(LxF10[,i])}
+for (i in 1:ITER){e0FFORE[4,i]<-sum(LxF15[,i])}
+for (i in 1:ITER){e0FFORE[5,i]<-sum(LxF20[,i])}
+for (i in 1:ITER){e0FFORE[6,i]<-sum(LxF25[,i])}
+for (i in 1:ITER){e0FFORE[7,i]<-sum(LxF30[,i])}
 
 ##MAKE nSx's FOR EACH PERIOD
 SxF30<-SxF25<-SxF20<-SxF25<-SxF15<-SxF10<-SxF05<-array(0,c(SIZE-1,ITER))
@@ -229,6 +229,20 @@ for (i in 1:ITER){SM15[,,i]<-rbind(0,cbind(diag(SxM15[,i]),0))}
 for (i in 1:ITER){SM20[,,i]<-rbind(0,cbind(diag(SxM20[,i]),0))}
 for (i in 1:ITER){SM25[,,i]<-rbind(0,cbind(diag(SxM25[,i]),0))}
 for (i in 1:ITER){SM30[,,i]<-rbind(0,cbind(diag(SxM30[,i]),0))}
+
+##SPECIAL CALCULATION FOR OPEN-ENDED AGE GROUP OF LESLIE MATRICES
+for (i in 1:ITER){SF05[SIZE,SIZE,i]<-SF05[SIZE,SIZE-1,i]<-(LxF05[SIZE,i]/(LxF05[SIZE,i]+LxF05[SIZE-1,i]))}
+for (i in 1:ITER){SF10[SIZE,SIZE,i]<-SF10[SIZE,SIZE-1,i]<-(LxF10[SIZE,i]/(LxF10[SIZE,i]+LxF10[SIZE-1,i]))}
+for (i in 1:ITER){SF15[SIZE,SIZE,i]<-SF15[SIZE,SIZE-1,i]<-(LxF15[SIZE,i]/(LxF15[SIZE,i]+LxF15[SIZE-1,i]))}
+for (i in 1:ITER){SF20[SIZE,SIZE,i]<-SF20[SIZE,SIZE-1,i]<-(LxF20[SIZE,i]/(LxF20[SIZE,i]+LxF20[SIZE-1,i]))}
+for (i in 1:ITER){SF25[SIZE,SIZE,i]<-SF25[SIZE,SIZE-1,i]<-(LxF25[SIZE,i]/(LxF25[SIZE,i]+LxF25[SIZE-1,i]))}
+for (i in 1:ITER){SF30[SIZE,SIZE,i]<-SF30[SIZE,SIZE-1,i]<-(LxF30[SIZE,i]/(LxF30[SIZE,i]+LxF30[SIZE-1,i]))}
+for (i in 1:ITER){SM05[SIZE,SIZE,i]<-SM05[SIZE,SIZE-1,i]<-(LxM05[SIZE,i]/(LxM05[SIZE,i]+LxM05[SIZE-1,i]))}
+for (i in 1:ITER){SM10[SIZE,SIZE,i]<-SM10[SIZE,SIZE-1,i]<-(LxM10[SIZE,i]/(LxM10[SIZE,i]+LxM10[SIZE-1,i]))}
+for (i in 1:ITER){SM15[SIZE,SIZE,i]<-SM15[SIZE,SIZE-1,i]<-(LxM15[SIZE,i]/(LxM15[SIZE,i]+LxM15[SIZE-1,i]))}
+for (i in 1:ITER){SM20[SIZE,SIZE,i]<-SM20[SIZE,SIZE-1,i]<-(LxM20[SIZE,i]/(LxM20[SIZE,i]+LxM20[SIZE-1,i]))}
+for (i in 1:ITER){SM25[SIZE,SIZE,i]<-SM25[SIZE,SIZE-1,i]<-(LxM25[SIZE,i]/(LxM25[SIZE,i]+LxM25[SIZE-1,i]))}
+for (i in 1:ITER){SM30[SIZE,SIZE,i]<-SM30[SIZE,SIZE-1,i]<-(LxM30[SIZE,i]/(LxM30[SIZE,i]+LxM30[SIZE-1,i]))}
 
 ##PUT FERTILITY INTO AGE PROFILES
 TFRs2005<-TFRFORE[,2]
@@ -286,22 +300,22 @@ OxF[1:SIZE,]<-PropOutF
 BF30<-BF25<-BF20<-BF15<-BF10<-BF05<-0*SF05
 
 for(j in 1:SIZE-1)
-  {BF05[1,j,1:ITER]<-(LxF05[1]/2)*(Fert2005[j,]+Fert2005[j+1,]*(SxF05[j]))*ffab}
+  {BF05[1,j,1:ITER]<-(LxF05[1]/10)*(Fert2005[j,]+Fert2005[j+1,]*(SxF05[j]))*ffab}
 AF05 = SF05 + BF05
 for(j in 1:SIZE-1)
-  {BF10[1,j,1:ITER]<-(LxF10[1]/2)*(Fert2010[j,]+Fert2010[j+1,]*(SxF10[j]))*ffab}
+  {BF10[1,j,1:ITER]<-(LxF10[1]/10)*(Fert2010[j,]+Fert2010[j+1,]*(SxF10[j]))*ffab}
 AF10 = SF10 + BF10
 for(j in 1:SIZE-1)
-  {BF15[1,j,1:ITER]<-(LxF15[1]/2)*(Fert2015[j,]+Fert2015[j+1,]*(SxF15[j]))*ffab}
+  {BF15[1,j,1:ITER]<-(LxF15[1]/10)*(Fert2015[j,]+Fert2015[j+1,]*(SxF15[j]))*ffab}
 AF15 = SF15 + BF15
 for(j in 1:SIZE-1)
-  {BF20[1,j,1:ITER]<-(LxF20[1]/2)*(Fert2020[j,]+Fert2020[j+1,]*(SxF20[j]))*ffab}
+  {BF20[1,j,1:ITER]<-(LxF20[1]/10)*(Fert2020[j,]+Fert2020[j+1,]*(SxF20[j]))*ffab}
 AF20 = SF20 + BF20
 for(j in 1:SIZE-1)
-  {BF25[1,j,1:ITER]<-(LxF25[1]/2)*(Fert2025[j,]+Fert2025[j+1,]*(SxF25[j]))*ffab}
+  {BF25[1,j,1:ITER]<-(LxF25[1]/10)*(Fert2025[j,]+Fert2025[j+1,]*(SxF25[j]))*ffab}
 AF25 = SF25 + BF25
 for(j in 1:SIZE-1)
-  {BF30[1,j,1:ITER]<-(LxF30[1]/2)*(Fert2030[j,]+Fert2030[j+1,]*(SxF30[j]))*ffab}
+  {BF30[1,j,1:ITER]<-(LxF30[1]/10)*(Fert2030[j,]+Fert2030[j+1,]*(SxF30[j]))*ffab}
 AF30 = SF30 + BF30
 
 ##MAKE ARRAYS TO HOLD THE DATA
@@ -351,22 +365,22 @@ for (i in 1:ITER){KF35[,,i]<- (AF30[,,i]%*%KF30[,,i])+(In2030[,i])-(Out2030[,i])
 BM30<-BM25<-BM20<-BM15<-BM10<-BM05<-0*SF05
 
 for(j in 1:SIZE-1)
-  {BM05[1,j,1:ITER] <- (LxM05[1]/2)*(Fert2005[j,]+Fert2005[j+1,]*(SxF05[j]))*fmab}
+  {BM05[1,j,1:ITER] <- (LxM05[1]/10)*(Fert2005[j,]+Fert2005[j+1,]*(SxF05[j]))*fmab}
 AM05 = SM05 + BM05
 for(j in 1:SIZE-1)
-  {BM10[1,j,1:ITER] <- (LxM10[1]/2)*(Fert2010[j,]+Fert2010[j+1,]*(SxF10[j]))*fmab}
+  {BM10[1,j,1:ITER] <- (LxM10[1]/10)*(Fert2010[j,]+Fert2010[j+1,]*(SxF10[j]))*fmab}
 AM10 = SM10 + BM10
 for(j in 1:SIZE-1)
-  {BM15[1,j,1:ITER] <- (LxM15[1]/2)*(Fert2015[j,]+Fert2015[j+1,]*(SxF15[j]))*fmab}
+  {BM15[1,j,1:ITER] <- (LxM15[1]/10)*(Fert2015[j,]+Fert2015[j+1,]*(SxF15[j]))*fmab}
 AM15 = SM15 + BM15
 for(j in 1:SIZE-1)
-  {BM20[1,j,1:ITER] <- (LxM20[1]/2)*(Fert2020[j,]+Fert2020[j+1,]*(SxF20[j]))*fmab}
+  {BM20[1,j,1:ITER] <- (LxM20[1]/10)*(Fert2020[j,]+Fert2020[j+1,]*(SxF20[j]))*fmab}
 AM20 = SM20 + BM20
 for(j in 1:SIZE-1)
-  {BM25[1,j,1:ITER] <- (LxM25[1]/2)*(Fert2025[j,]+Fert2025[j+1,]*(SxF25[j]))*fmab}
+  {BM25[1,j,1:ITER] <- (LxM25[1]/10)*(Fert2025[j,]+Fert2025[j+1,]*(SxF25[j]))*fmab}
 AM25 = SM25 + BM25
 for(j in 1:SIZE-1)
-  {BM30[1,j,1:ITER] <- (LxM30[1]/2)*(Fert2030[j,]+Fert2030[j+1,]*(SxF30[j]))*fmab}
+  {BM30[1,j,1:ITER] <- (LxM30[1]/10)*(Fert2030[j,]+Fert2030[j+1,]*(SxF30[j]))*fmab}
 AM30 = SM30 + BM30
 
 ##MAKE ARRAYS TO HOLD THE DATA
